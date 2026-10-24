@@ -65,6 +65,7 @@
   * { border-color: var(--color-border); }
   html { font-size: 18px; }
   body {
+    padding-bottom: 130px;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -92,6 +93,8 @@
 .aadhaar-mask { animation: privacy-reveal .6s ease-out; }
 .fill-value { animation: fill-in .3s ease-out; }
 .pdf-sheet { min-height: 690px; }
+.audio-help-dock { width: min(350px, 100%); padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+html { scroll-padding-bottom: 140px; }
 @keyframes mic-pulse { 50% { box-shadow: 0 0 0 18px color-mix(in oklab, var(--secondary) 5%, transparent); } }
 @keyframes wave { to { height: 25px; } }
 @keyframes privacy-reveal { from { filter: blur(6px); } to { filter: blur(0); } }
