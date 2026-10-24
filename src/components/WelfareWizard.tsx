@@ -56,7 +56,7 @@ export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
       <span className="text-muted-foreground">{t("Step", "चरण")} <strong className="text-primary">{step}</strong> / 4</span>
     </div>
     <div className="mb-8 text-center"><h1 ref={heading} tabIndex={-1} className="scroll-mt-52 font-display text-3xl font-extrabold text-primary outline-none sm:text-4xl">{title}</h1>
-      <p className="mt-2 text-xl text-muted-foreground">{step === 1 ? t("Find welfare schemes meant for your family.", "अपने परिवार के लिए सरकारी योजनाएं खोजें।") : step === 2 ? t("Review the sample details. Your ID stays with you.", "नमूना विवरण जाँचें। आपका पहचान पत्र आपके पास रहता है।") : step === 3 ? t("A little support can make a big difference.", "थोड़ी सी मदद, बड़ा बदलाव।") : t("Review, assemble and download your application draft.", "विवरण जाँचें, फ़ॉर्म बनाएँ और प्रारूप डाउनलोड करें।")}</p>
+      <p className="mt-2 text-xl text-muted-foreground">{step === 1 ? t("Find welfare schemes meant for your family.", "अपने परिवार के लिए सरकारी योजनाएं खोजें।") : step === 2 ? t("Check the sample details. Your ID stays with you.", "नमूना विवरण जाँचें। आपका पहचान पत्र आपके पास रहता है।") : step === 3 ? t("A little support can make a big difference.", "थोड़ी सी मदद, बड़ा बदलाव।") : t("Check your details, make your form and save a copy.", "विवरण जाँचें, फ़ॉर्म बनाएँ और एक प्रति सहेजें।")}</p>
       {step === 1 && <p className="mt-1 text-base text-muted-foreground">{t("नमस्ते! अपने परिवार के लिए सरकारी योजनाएं खोजें।", "Namaste! Find welfare schemes meant for your family.")}</p>}
     </div>
     {step === 1 && <>

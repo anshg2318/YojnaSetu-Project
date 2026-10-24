@@ -5,7 +5,7 @@
 - [x] Verify both start paths, download and narrow-screen layout.
 
 # Low-literacy ergonomics
-- [ ] Replace state typing with large selectable chips; keep all options accessible.
-- [ ] Add persistent step-aware spoken help in English and Hindi.
-- [ ] Apply shared button press feedback and simplify technical wording.
-- [ ] Verify selection, help, downloads and small-screen placement.
+- [x] Replace state typing with large selectable chips; keep all options accessible.
+- [x] Add persistent step-aware spoken help in English and Hindi.
+- [x] Apply shared button press feedback and simplify technical wording.
+- [x] Verify selection, help, downloads and small-screen placement.
