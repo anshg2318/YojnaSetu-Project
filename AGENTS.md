@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the four-step welfare demonstration client-side with transient state; ID files must not be transmitted or persisted because scanning is simulated.
+- Store sample profiles and schemes in a shared browser-safe module, and dynamically load the PDF generator on download; generated documents are application drafts, not official forms or eligibility decisions.

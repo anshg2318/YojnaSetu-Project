@@ -1,4 +1,5 @@
 import { BadgeCheck, Landmark, Volume2, VolumeX } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export type Lang = "en" | "hi";
 
@@ -17,11 +18,11 @@ export function SiteHeader({
     <header className="sticky top-0 z-20 bg-card shadow-sm">
       <div className="tricolor h-2 w-full" aria-hidden />
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
-        <a href="/" className="flex items-center gap-3">
+        <a href="/" className="flex min-w-0 max-w-full items-center gap-3">
           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
             <Landmark className="h-8 w-8" aria-hidden />
           </span>
-          <span className="flex flex-col">
+          <span className="flex min-w-0 flex-col">
             <span className="font-display text-2xl font-extrabold leading-tight text-primary">
               YojnaSetu <span className="text-secondary">|</span> योजनासेतु
             </span>
@@ -37,19 +38,19 @@ export function SiteHeader({
         <div className="flex items-center gap-2">
           <div role="group" aria-label="Language / भाषा" className="flex h-[60px] rounded-2xl border-2 border-primary p-1">
             {(["en", "hi"] as Lang[]).map((l) => (
-              <button
+              <Button variant="ghost"
                 key={l}
                 onClick={() => setLang(l)}
                 aria-pressed={lang === l}
-                className={`rounded-xl px-4 text-lg font-bold transition-colors ${
+                className={`h-full rounded-xl px-4 text-lg font-bold transition-colors ${
                   lang === l ? "bg-primary text-primary-foreground" : "text-primary hover:bg-muted"
                 }`}
               >
                 {l === "en" ? "English" : "हिंदी"}
-              </button>
+              </Button>
             ))}
           </div>
-          <button
+          <Button variant="outline"
             onClick={() => setAudio(!audio)}
             aria-pressed={audio}
             className={`flex h-[60px] items-center gap-2 rounded-2xl px-4 text-lg font-bold transition-colors ${
@@ -61,7 +62,7 @@ export function SiteHeader({
               <span>Audio Help</span>
               <span className="text-sm">आवाज़ सहायता</span>
             </span>
-          </button>
+          </Button>
         </div>
       </div>
     </header>
