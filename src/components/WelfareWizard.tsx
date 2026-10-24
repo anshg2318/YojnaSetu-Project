@@ -6,7 +6,13 @@ import { FormAssembly } from "@/components/FormAssembly";
 import { sampleProfile, schemes, type Scheme } from "@/lib/welfare-demo";
 import type { Lang } from "@/components/SiteHeader";
 
-const steps = [{ en: "Choose a start", hi: "शुरुआत चुनें", icon: Mic }, { en: "Check details", hi: "विवरण जाँचें", icon: ShieldCheck }, { en: "Find schemes", hi: "योजनाएँ खोजें", icon: Sparkles }, { en: "Get your form", hi: "फ़ॉर्म पाएँ", icon: FileText }];
+const steps = [{ en: "Choose a start", hi: "शुरुआत चुनें", icon: Mic }, { en: "Card Scan", hi: "कार्ड जांच", icon: ShieldCheck }, { en: "Scheme Check", hi: "योजना जांच", icon: Sparkles }, { en: "Get your form", hi: "फ़ॉर्म पाएँ", icon: FileText }];
+const instructions = [
+  { en: "Tap the orange microphone to try a sample voice recording, or tap Try a sample ID to see a card. This is a practice journey; your card is not sent or saved.", hi: "आवाज़ का नमूना सुनने के लिए नारंगी माइक दबाएँ। या नमूना पहचान पत्र देखें दबाएँ। यह अभ्यास है। आपका कार्ड भेजा या सहेजा नहीं जाता।" },
+  { en: "Check the name, state and age on this sample card. The Aadhaar number is hidden. Tap Confirm and Find Schemes to continue.", hi: "नमूना कार्ड पर नाम, राज्य और उम्र जाँचें। आधार नंबर छिपा हुआ है। आगे बढ़ने के लिए पुष्टि करें और योजनाएँ खोजें दबाएँ।" },
+  { en: "These are three sample schemes, not confirmed benefits. Read each benefit, then tap Auto-Fill Form Draft on the scheme you want.", hi: "ये तीन नमूना योजनाएँ हैं। लाभ मिलने की पुष्टि नहीं है। हर योजना का लाभ देखें। अपनी पसंद की योजना पर फ़ॉर्म का प्रारूप भरें दबाएँ।" },
+  { en: "Check your name and tap your state. Fill your age and yearly income. Tap Make My Form, then Download Filled PDF. This is only a draft; apply through the scheme's official website.", hi: "अपना नाम जाँचें और अपना राज्य चुनें। उम्र और साल की आय भरें। फ़ॉर्म तैयार करें दबाएँ। फिर भरा हुआ फ़ॉर्म डाउनलोड करें दबाएँ। यह केवल प्रारूप है। आवेदन योजना की आधिकारिक वेबसाइट पर करें।" },
+];
 
 export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
   const [step, setStep] = useState(1);
@@ -46,7 +52,7 @@ export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
       </li>)}</ol>
     </nav>
     <div className="mb-7 flex items-center justify-between gap-4 text-sm">
-      {step > 1 ? <Button variant="ghost" onClick={() => next(step - 1)} className="min-h-11 text-base"><ArrowLeft />{t("Back", "पीछे")}</Button> : <span className="flex items-center gap-2 text-success"><ShieldCheck className="size-4" />{t("Private by design", "आपकी जानकारी सुरक्षित")}</span>}
+      {step > 1 ? <Button variant="ghost" onClick={() => next(step - 1)} className="min-h-11 text-base"><ArrowLeft />{t("Back", "पीछे")}</Button> : <span className="flex items-center gap-2 text-success"><ShieldCheck className="size-4" />{t("Your details stay safe", "आपकी जानकारी सुरक्षित")}</span>}
       <span className="text-muted-foreground">{t("Step", "चरण")} <strong className="text-primary">{step}</strong> / 4</span>
     </div>
     <div className="mb-8 text-center"><h1 ref={heading} tabIndex={-1} className="scroll-mt-52 font-display text-3xl font-extrabold text-primary outline-none sm:text-4xl">{title}</h1>
@@ -88,14 +94,19 @@ export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
       <div className="mt-7 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-success" />{t("No ID stored", "पहचान पत्र सहेजा नहीं जाता")}</span><span className="flex items-center gap-2"><Volume2 className="size-4 text-secondary" />{t("Hindi & English audio help", "हिंदी और अंग्रेज़ी में आवाज़ सहायता")}</span><span className="flex items-center gap-2"><Users className="size-4 text-primary" />{t("An independent student project", "एक स्वतंत्र छात्र परियोजना")}</span></div>
     </>}
     {step === 2 && <>
-      <div className="mb-6 rounded-md bg-muted px-4 py-3 text-center text-sm text-muted-foreground">{fileName ? t(`Image selected: ${fileName}. It has not been read or uploaded. Fictional preview below.`, `तस्वीर चुनी गई: ${fileName}। पढ़ी या भेजी नहीं गई। नीचे काल्पनिक नमूना है।`) : t("Demo preview · Fictional ID and sample details, not real OCR.", "नमूना पूर्वावलोकन · काल्पनिक पहचान पत्र और विवरण, वास्तविक OCR नहीं।")}</div>
+      <div className="mb-6 break-words rounded-md bg-muted px-4 py-3 text-center text-base text-muted-foreground">{fileName ? t(`You chose ${fileName}. We have not read, sent or saved it. The card below is a sample.`, `आपने ${fileName} चुना है। इसे पढ़ा, भेजा या सहेजा नहीं गया है। नीचे नमूना कार्ड है।`) : t("Card Scan · This is a made-up sample card, not a scan of your ID.", "कार्ड जांच · यह नमूना कार्ड है, आपके पहचान पत्र की जांच नहीं।")}</div>
       <div className="grid items-center gap-8 md:grid-cols-2"><SampleIdCard /><section><h2 className="mb-5 text-2xl font-bold text-primary">{t("Extracted details · Sample", "निकाले गए विवरण · नमूना")}</h2><dl className="grid grid-cols-2 gap-3">{[[t("Full Name", "पूरा नाम"), profile.name], [t("State", "राज्य"), profile.state], [t("Category", "श्रेणी"), profile.category], [t("Age", "उम्र"), profile.age]].map(([label, value]) => <div key={label} className="rounded-md bg-muted p-4"><dt className="text-sm text-muted-foreground">{label}</dt><dd className="mt-1 break-words text-xl font-bold text-primary">{value}</dd></div>)}</dl><p className="mt-5 flex items-start gap-2 text-base text-success"><ShieldCheck className="mt-1 size-5 shrink-0" />{t("Only sample details are used. No Aadhaar number is saved or added to your form.", "केवल नमूना विवरण उपयोग होते हैं। आधार नंबर सहेजा या फ़ॉर्म में जोड़ा नहीं जाता।")}</p><Button variant="success" onClick={() => next(3)} className="mt-6 h-auto min-h-16 w-full whitespace-normal px-4 text-xl font-bold">{t("Confirm & Find Schemes", "पुष्टि करें और योजनाएँ खोजें")}<ArrowRight /></Button></section></div>
     </>}
     {step === 3 && <>
-      <p className="mb-6 rounded-md bg-accent px-4 py-3 text-center text-base">{t("Illustrative matches only. Eligibility is not verified; official rules and checks apply.", "ये केवल नमूना मिलान हैं। पात्रता सत्यापित नहीं है; आधिकारिक नियम और जाँच लागू हैं।")}</p>
+      <p className="mb-6 rounded-md bg-accent px-4 py-3 text-center text-base">{t("Scheme Check · These are examples, not confirmed benefits. Check each scheme's rules before applying.", "योजना जांच · ये नमूने हैं, लाभ मिलने की पुष्टि नहीं। आवेदन से पहले योजना के नियम जाँचें।")}</p>
       <div className="grid gap-5 lg:grid-cols-3">{schemes.map(item => { const Icon = item.icon === "farmer" ? Leaf : item.icon === "health" ? HeartPulse : Users; return <article key={item.id} className="flex flex-col rounded-lg border border-border bg-card p-6"><div className="mb-5 flex items-center justify-between gap-2"><span className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary"><Icon className="size-6" /></span><span className="flex items-center gap-1 rounded-md bg-success/10 px-2 py-1 text-xs font-bold text-success"><CheckCheck className="size-4" />{t("Eligible · Sample", "पात्र · नमूना")}</span></div><h2 className="text-2xl font-bold text-primary">{t(item.name, item.hindi)}</h2><p className="mt-1 text-sm text-muted-foreground">{t(item.hindi, item.name)}</p><div className="my-6"><p className="text-3xl font-bold text-success">{item.benefit}</p><p className="text-base text-muted-foreground">{t(item.unit, item.unitHi)}</p></div><p className="mb-6 text-lg">{t(item.description, item.descriptionHi)}</p><Button className="mt-auto h-auto min-h-16 w-full whitespace-normal px-3 py-3 text-lg font-bold" onClick={() => { setScheme(item); next(4); }}>{t("Auto-Fill Form Draft", "फ़ॉर्म का प्रारूप भरें")}<ArrowRight /></Button></article>; })}</div>
     </>}
     {step === 4 && <FormAssembly key={scheme.id} profile={profile} setProfile={setProfile} scheme={scheme} lang={lang} speak={speak} />}
     {notice && <p role="alert" className="mt-5 text-center text-secondary">{notice}</p>}
+    <div className="audio-help-dock fixed bottom-0 right-0 z-30 flex justify-end p-3 sm:p-4">
+      <Button className="h-auto min-h-16 max-w-full gap-3 whitespace-normal rounded-lg border-2 border-primary-foreground/40 px-4 py-3 text-left shadow-lg [&_svg]:size-7" onClick={() => { const help = instructions[step - 1]; if (help) speak(t(help.en, help.hi)); }} aria-label="Need help? Tap to hear instructions (मदद चाहिए? आवाज़ सुनें)">
+        <Volume2 aria-hidden /><span className="flex min-w-0 flex-col"><span className="text-lg font-bold">{t("Need help?", "मदद चाहिए?")}</span><span className="text-sm">{t("Tap to hear instructions", "आवाज़ सुनें")}</span><span className="text-sm opacity-90">{t("मदद चाहिए? आवाज़ सुनें", "Need help? Tap to hear instructions")}</span></span>
+      </Button>
+    </div>
   </main>;
 }

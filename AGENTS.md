@@ -11,3 +11,4 @@
 
 - Keep the four-step welfare demonstration client-side with transient state; ID files must not be transmitted or persisted because scanning is simulated.
 - Store sample profiles and schemes in a shared browser-safe module, and dynamically load the PDF generator on download; generated documents are application drafts, not official forms or eligibility decisions.
+- Use shared Button press feedback and StateChips for state selection; keep spoken help tied to the current wizard step and reserve page-end space for its fixed control so essential actions remain reachable.
