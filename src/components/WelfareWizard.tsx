@@ -22,7 +22,7 @@ export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
   const en = lang === "en";
   const t = (english: string, hindi: string) => en ? english : hindi;
   useEffect(() => () => { if (timer.current) clearTimeout(timer.current); }, []);
-  useEffect(() => { if (step > 1) { heading.current?.focus(); heading.current?.scrollIntoView({ block: "start", behavior: "instant" }); } }, [step]);
+  useEffect(() => { if (step > 1) heading.current?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: "instant" }); }, [step]);
   function speak(text: string) {
     if (!window.speechSynthesis) { setNotice(t("Audio isn't available in this browser.", "इस ब्राउज़र में आवाज़ उपलब्ध नहीं है।")); return; }
     window.speechSynthesis.cancel();
