@@ -27,7 +27,9 @@ export function SiteHeader({
             </span>
             <span className="mt-1 inline-flex w-fit items-center gap-1 rounded-full bg-success/10 px-2 py-0.5 text-sm font-semibold text-success">
               <BadgeCheck className="h-4 w-4" aria-hidden />
-              भारत सरकार सेवा संगत (Govt Schemes Portal)
+              {lang === "en"
+                ? "Independent AI Welfare Guide (गैर-सरकारी कल्याण गाइड)"
+                : "सार्वजनिक योजनाओं को खोजने का एक स्वतंत्र डिजिटल प्रयास"}
             </span>
           </span>
         </a>
