@@ -22,7 +22,7 @@ export async function downloadDraft(profile: Profile, scheme: Scheme) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(11);
   doc.text(scheme.name, 20, 49);
-  const fields = [["Full name", profile.name], ["State", profile.state], ["Category / occupation", profile.category], ["Age", profile.age], ["Annual income (INR)", profile.income]];
+  const fields: [string, string][] = [["Full name", profile.name], ["State", profile.state], ["Category / occupation", profile.category], ["Age", profile.age], ["Annual income (INR)", profile.income]];
   fields.forEach(([label, value], index) => {
     const y = 67 + index * 25;
     doc.text(label, 20, y);

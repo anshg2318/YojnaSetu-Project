@@ -29,7 +29,7 @@ export function WelfareWizard({ lang, audio }: { lang: Lang; audio: boolean }) {
     const utterance = new SpeechSynthesisUtterance(text); utterance.lang = en ? "en-IN" : "hi-IN";
     window.speechSynthesis.speak(utterance);
   }
-  function next(value: number) { setNotice(""); setStep(value); if (audio) speak(t(steps[value - 1].en, steps[value - 1].hi)); }
+  function next(value: number) { const target = steps[value - 1]; if (!target) return; setNotice(""); setStep(value); if (audio) speak(t(target.en, target.hi)); }
   function record() {
     if (timer.current) clearTimeout(timer.current);
     if (recording) { setRecording(false); setTranscribed(true); return; }
